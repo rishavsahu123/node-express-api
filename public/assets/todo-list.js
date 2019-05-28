@@ -3,15 +3,16 @@ $(document).ready(function(){
   $('form').on('submit', function(){
 
       var item = $('form input');
-      var todo = {item: item.val()};
+      var todo = {item: item.val().trim()};
 
       $.ajax({
         type: 'POST',
-        url: '/todo',
+        url: '/home',
         data: todo,
         success: function(data){
           //do something with the data via front-end framework
-          location.reload();
+          //window.location.href='/'
+          location.reload()
         }
       });
 
@@ -20,10 +21,10 @@ $(document).ready(function(){
   });
 
   $('li').on('click', function(){
-      var item = $(this).text().replace(/ /g, "-");
+      var item = $(this).text();
       $.ajax({
         type: 'DELETE',
-        url: '/todo/' + item,
+        url: '/home/' + item,
         success: function(data){
           //do something with the data via front-end framework
           location.reload();
